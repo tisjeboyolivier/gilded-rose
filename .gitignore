@@ -6,3 +6,8 @@ vendor
 .idea
 *.iml
 venv
+*.pyc
+.cache
+.coverage
+.idea/
+*.iml
