@@ -57,8 +57,8 @@ class GildedRoseTest(unittest.TestCase):
             self.print_items(day, items)
 
             for pre_update_sell_date, post_update_item in zip(pre_update_sell_dates, items):
-                self.assertEqual(post_update_item.quality, 80, msg=item.name+"'s quality is not 80")
-                self.assertEqual(post_update_item.sell_in, pre_update_sell_date, msg=item.name+"'s sell_in date changed")
+                self.assertEqual(post_update_item.quality, 80, msg=post_update_item.name+"'s quality is not 80")
+                self.assertEqual(post_update_item.sell_in, pre_update_sell_date, msg=post_update_item.name+"'s sell_in date changed")
 
     def test_standard_item_decrease(self):
         items = [
@@ -78,10 +78,10 @@ class GildedRoseTest(unittest.TestCase):
                 if post_update_item.quality > 0:
                     if post_update_item.sell_in < 0 and pre_update_quality >= 2:
                         self.assertEqual(post_update_item.quality, pre_update_quality - 2,
-                                         msg=item.name + "'s quality did not decrease by 2")
+                                         msg=post_update_item.name + "'s quality did not decrease by 2")
                     elif pre_update_quality >= 1:
                         self.assertEqual(post_update_item.quality, pre_update_quality - 1,
-                                         msg=item.name + "'s quality did not decrease by 1")
+                                         msg=post_update_item.name + "'s quality did not decrease by 1")
 
     def test_conjured_decrease(self):
         items = [
@@ -101,10 +101,10 @@ class GildedRoseTest(unittest.TestCase):
                 if pre_update_quality > 0:
                     if post_update_item.sell_in < 0 and pre_update_quality >= 4:
                         self.assertEqual(post_update_item.quality, pre_update_quality - 4,
-                                         msg=item.name + "'s quality did not decrease by 4")
+                                         msg=post_update_item.name + "'s quality did not decrease by 4")
                     elif pre_update_quality >= 2:
                         self.assertEqual(post_update_item.quality, pre_update_quality - 2,
-                                         msg=item.name + "'s quality did not decrease by 2")
+                                         msg=post_update_item.name + "'s quality did not decrease by 2")
 
     def test_brie_increase(self):
         items = [
@@ -123,10 +123,10 @@ class GildedRoseTest(unittest.TestCase):
             for pre_update_quality, post_update_item in zip(pre_update_qualities, items):
                 if post_update_item.sell_in < 0 and pre_update_quality <= 48:
                     self.assertEqual(post_update_item.quality, pre_update_quality+2,
-                                     msg=item.name+"'s quality did not increase by 2")
+                                     msg=post_update_item.name+"'s quality did not increase by 2")
                 elif pre_update_quality <= 49:
                     self.assertEqual(post_update_item.quality, pre_update_quality+1,
-                                     msg=item.name+"'s quality did not increase by 1")
+                                     msg=post_update_item.name+"'s quality did not increase by 1")
 
     def test_backstage_passes_increase(self):
         items = [
@@ -147,16 +147,16 @@ class GildedRoseTest(unittest.TestCase):
             for pre_update_quality, post_update_item in zip(pre_update_qualities, items):
                 if post_update_item.sell_in < 0:
                     self.assertEqual(post_update_item.quality, 0,
-                                     msg=item.name+"'s quality did not become 0")
+                                     msg=post_update_item.name+"'s quality did not become 0")
                 elif 0 <= post_update_item.sell_in < 5:
                     self.assertEqual(post_update_item.quality, pre_update_quality+3,
-                                     msg=item.name+"'s quality did not increase by 3")
+                                     msg=post_update_item.name+"'s quality did not increase by 3")
                 elif 5 <= post_update_item.sell_in < 10:
                     self.assertEqual(post_update_item.quality, pre_update_quality+2,
-                                     msg=item.name+"'s quality did not increase by 2")
+                                     msg=post_update_item.name+"'s quality did not increase by 2")
                 else:
                     self.assertEqual(post_update_item.quality, pre_update_quality+1,
-                                     msg=item.name+"'s quality did not increase by 1")
+                                     msg=post_update_item.name+"'s quality did not increase by 1")
 
 
 if __name__ == '__main__':
